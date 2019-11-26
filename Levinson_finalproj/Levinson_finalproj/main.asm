@@ -26,7 +26,7 @@ loop:
 	ldi r18, 8
 	ldi r19, 1
 	rcall GFX_set_array_pos
-	ldi r17, 46
+	ldi r17, 42
 	st X, r17
 	rcall GFX_refresh_screen
 	rjmp loop
