@@ -21,14 +21,12 @@ setup:
 	rcall OLED_initialize
 	rcall GFX_clear_array
 	rcall GFX_refresh_screen
-	ldi r16, 1
 
 loop:
-	mov r18, r16
+	ldi r18, 8
 	ldi r19, 1
 	rcall GFX_set_array_pos
-	ldi r17, 219
+	ldi r17, 46
 	st X, r17
 	rcall GFX_refresh_screen
-	inc r16
 	rjmp loop
