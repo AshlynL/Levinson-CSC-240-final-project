@@ -7,5 +7,3 @@ Input hardware: ATTiny416 Xplained, button.
 Icons (from character_map.asm):
   Frog = 046, 
   Cars = 219
-
-Hardware Schematic:
