@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.6  c:\users\physics lab\Documents\Atmel Studio\7.0\Levinson_finalproj\Levinson_finalproj\main.asm Tue Nov 26 08:57:43 2019
+AVRASM ver. 2.2.6  C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm Tue Dec 03 09:33:31 2019
 
 
 EQU  SIGNATURE_000 0000001e
@@ -3463,4 +3463,6 @@ CSEG GFX_refresh_screen_nr 000005fa
 CSEG _GFX_draw_shape 00000600
 CSEG _GFX_draw_shape_loop 0000060c
 CSEG _GFX_draw_shape_end 00000612
-CSEG loop         0000061b
+CSEG loop         00000621
+CSEG check_button 00000629
+CSEG increment    0000062f
