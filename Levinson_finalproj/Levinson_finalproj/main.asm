@@ -43,6 +43,7 @@ loop:
 	st X, r17
 	rcall GFX_refresh_screen
 	rjmp loop
+<<<<<<< HEAD
 
 check_button:
 	lds r20, PORTB_IN
@@ -53,3 +54,5 @@ check_button:
 increment:
 	inc r19
 	ret
+=======
+>>>>>>> ec10ffdf4870ef75326dcf8176cdee228e245278
