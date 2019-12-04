@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.6  C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm Tue Dec 03 09:33:31 2019
+AVRASM ver. 2.2.6  C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm Wed Dec 04 12:23:27 2019
 
 
 EQU  SIGNATURE_000 0000001e
@@ -3463,6 +3463,13 @@ CSEG GFX_refresh_screen_nr 000005fa
 CSEG _GFX_draw_shape 00000600
 CSEG _GFX_draw_shape_loop 0000060c
 CSEG _GFX_draw_shape_end 00000612
-CSEG loop         00000621
-CSEG check_button 00000629
-CSEG increment    0000062f
+DEF  workhorse    r16
+CSEG loop         00000623
+CSEG move_car     0000064d
+CSEG check_button 00000640
+CSEG check_if_hit1 00000653
+CSEG increment    00000646
+CSEG lose         0000064b
+CSEG exit         00000651
+CSEG check_if_hit2 00000656
+CSEG hit          00000659

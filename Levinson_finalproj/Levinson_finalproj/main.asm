@@ -17,48 +17,92 @@ directives:
 	.include "lib_delay.asm"
 	.include "lib_SSD1306_OLED.asm"
 	.include "lib_GFX.asm"
+	.def workhorse = r16
 setup:
 	rcall OLED_initialize
 	rcall GFX_clear_array
 	rcall GFX_refresh_screen
-	ldi r16, 0b00000000
+	ldi workhorse, 0b00000000
 	sts PORTB_DIR, r16
-	ldi r16, 0b00001000
+	ldi workhorse, 0b00001000
 	sts PORTB_PIN4CTRL, r16
-	ldi r19, 1
-
-	;clc 
-	;rol r16
-	;brcc nj1
-	;ldi r20, 29
-	;eor r16, r20
-	;nj1:
+	ldi r21, 0 //frog
+	ldi r22, 15 //car1
+	ldi r20, 15
 
 loop:
 	rcall GFX_clear_array
+	//car 1
+	mov workhorse, r22
+	mov r18, workhorse
+	rcall move_car
+	mov r22, workhorse
+	rcall delay_1ms
+	rcall delay_1ms
+	rcall delay_1ms
+	ldi r19, 2
+	rcall GFX_set_array_pos
+	ldi r17, 219
+	st X, r17
+
+	//car2
+	mov workhorse, r20
+	mov r18, workhorse
+	rcall move_car
+	mov r20, workhorse
+	ldi r19, 3
+	rcall GFX_set_array_pos
+	ldi r17, 219
+	st X, r17
+
+	//frog
+	ldi r18, 7
+	mov r19, r21
 	rcall check_button
-	ldi r18, 1
 	rcall GFX_set_array_pos
 	ldi r17, 42
 	st X, r17
 	rcall GFX_refresh_screen
+	rcall check_if_hit1
 	rjmp loop
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> f4e09e20b7269d8797363928d23c3f98e3fac8ad
 
 check_button:
-	lds r20, PORTB_IN
-	andi r20, 0b00010000
-	cpi r20, 0b00000000
+	lds workhorse, PORTB_IN
+	andi workhorse, 0b00010000
+	cpi workhorse, 0b00000000
 	breq increment
 	ret
+
 increment:
+	cpi r19, 8
+	breq lose
 	inc r19
+	mov r21, r19
 	ret
-<<<<<<< HEAD
-=======
->>>>>>> ec10ffdf4870ef75326dcf8176cdee228e245278
-=======
->>>>>>> f4e09e20b7269d8797363928d23c3f98e3fac8ad
+
+lose:
+	ldi r21, 0
+	ret
+
+move_car:
+	cpi workhorse, 0
+	breq exit
+	dec workhorse
+	ret
+exit:
+	ldi workhorse, 15
+	ret
+
+check_if_hit1:
+	cpi r21, 2
+	breq check_if_hit2
+	ret
+
+check_if_hit2:
+	cpi r22, 7
+	breq hit
+	ret
+
+hit:
+	ldi r21, 0
+	ret

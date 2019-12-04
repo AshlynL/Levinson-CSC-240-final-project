@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.6  C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm Tue Dec 03 09:33:31 2019
+AVRASM ver. 2.2.6  C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm Wed Dec 04 12:23:27 2019
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.2.118\avrasm\inc\tn416def.inc'
 C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm(17): Including file 'C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\lib_delay.asm'
@@ -6099,41 +6099,94 @@ C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\L
 000616 9508                                                  ret
                                  
                                  ; --------------------------------------------------------------------------------
+                                 	.def workhorse = r16
                                  setup:
 000617 db57                      	rcall OLED_initialize
 000618 dfbd                      	rcall GFX_clear_array
 000619 dfd2                      	rcall GFX_refresh_screen
-00061a e000                      	ldi r16, 0b00000000
+00061a e000                      	ldi workhorse, 0b00000000
 00061b 9300 0420                 	sts PORTB_DIR, r16
-00061d e008                      	ldi r16, 0b00001000
+00061d e008                      	ldi workhorse, 0b00001000
 00061e 9300 0434                 	sts PORTB_PIN4CTRL, r16
-000620 e031                      	ldi r19, 1
-                                 
-                                 	;clc 
-                                 	;rol r16
-                                 	;brcc nj1
-                                 	;ldi r20, 29
-                                 	;eor r16, r20
-                                 	;nj1:
+000620 e050                      	ldi r21, 0 //frog
+000621 e06f                      	ldi r22, 15 //car1
+000622 e04f                      	ldi r20, 15
                                  
                                  loop:
-000621 dfb4                      	rcall GFX_clear_array
-000622 d006                      	rcall check_button
-000623 e021                      	ldi r18, 1
-000624 df9c                      	rcall GFX_set_array_pos
-000625 e21a                      	ldi r17, 42
-000626 931c                      	st X, r17
-000627 dfc4                      	rcall GFX_refresh_screen
-000628 cff8                      	rjmp loop
+000623 dfb2                      	rcall GFX_clear_array
+                                 	//car 1
+000624 2f06                      	mov workhorse, r22
+000625 2f20                      	mov r18, workhorse
+000626 d026                      	rcall move_car
+000627 2f60                      	mov r22, workhorse
+000628 db05                      	rcall delay_1ms
+000629 db04                      	rcall delay_1ms
+00062a db03                      	rcall delay_1ms
+00062b e032                      	ldi r19, 2
+00062c df94                      	rcall GFX_set_array_pos
+00062d ed1b                      	ldi r17, 219
+00062e 931c                      	st X, r17
+                                 
+                                 	//car2
+00062f 2f04                      	mov workhorse, r20
+000630 2f20                      	mov r18, workhorse
+000631 d01b                      	rcall move_car
+000632 2f40                      	mov r20, workhorse
+000633 e033                      	ldi r19, 3
+000634 df8c                      	rcall GFX_set_array_pos
+000635 ed1b                      	ldi r17, 219
+000636 931c                      	st X, r17
+                                 
+                                 	//frog
+000637 e027                      	ldi r18, 7
+000638 2f35                      	mov r19, r21
+000639 d006                      	rcall check_button
+00063a df86                      	rcall GFX_set_array_pos
+00063b e21a                      	ldi r17, 42
+00063c 931c                      	st X, r17
+00063d dfae                      	rcall GFX_refresh_screen
+00063e d014                      	rcall check_if_hit1
+00063f cfe3                      	rjmp loop
                                  
                                  check_button:
-000629 9140 0428                 	lds r20, PORTB_IN
-00062b 7140                      	andi r20, 0b00010000
-00062c 3040                      	cpi r20, 0b00000000
-00062d f009                      	breq increment
-00062e 9508                      	ret
+000640 9100 0428                 	lds workhorse, PORTB_IN
+000642 7100                      	andi workhorse, 0b00010000
+000643 3000                      	cpi workhorse, 0b00000000
+000644 f009                      	breq increment
+000645 9508                      	ret
+                                 
                                  increment:
-00062f 9533                      	inc r19
+000646 3038                      	cpi r19, 8
+000647 f019                      	breq lose
+000648 9533                      	inc r19
+000649 2f53                      	mov r21, r19
+00064a 9508                      	ret
+                                 
+                                 lose:
+00064b e050                      	ldi r21, 0
+00064c 9508                      	ret
+                                 
+                                 move_car:
+00064d 3000                      	cpi workhorse, 0
+00064e f011                      	breq exit
+00064f 950a                      	dec workhorse
+000650 9508                      	ret
+                                 exit:
+000651 e00f                      	ldi workhorse, 15
+000652 9508                      	ret
+                                 
+                                 check_if_hit1:
+000653 3052                      	cpi r21, 2
+000654 f009                      	breq check_if_hit2
+000655 9508                      	ret
+                                 
+                                 check_if_hit2:
+000656 3067                      	cpi r22, 7
+000657 f009                      	breq hit
+000658 9508                      	ret
+                                 
+                                 hit:
+000659 e050                      	ldi r21, 0
 
 
 RESOURCE USE INFORMATION
@@ -6151,39 +6204,39 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 "ATtiny416" register use summary:
-x  :   3 y  :   0 z  :   2 r0 :   3 r1 :   3 r2 :   0 r3 :   0 r4 :   0 
+x  :   5 y  :   0 z  :   2 r0 :   3 r1 :   3 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  61 r17:  21 r18:  14 r19:  13 r20:   8 
-r21:   7 r22:   4 r23:  16 r24:  16 r25:   8 r26:   4 r27:   4 r28:   0 
+r13:   0 r14:   0 r15:   0 r16:  73 r17:  25 r18:  16 r19:  17 r20:   8 
+r21:  13 r22:   8 r23:  16 r24:  16 r25:   8 r26:   4 r27:   4 r28:   0 
 r29:   0 r30:   3 r31:   3 
 Registers used: 18 out of 35 (51.4%)
 
 "ATtiny416" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   1 add   :   3 adiw  :   0 and   :   0 
 andi  :   1 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   5 brcs  :   0 break :   0 breq  :   4 brge  :   0 brhc  :   0 
+brcc  :   5 brcs  :   0 break :   0 breq  :   8 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
 brne  :  10 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 cbi   :   0 cbr   :   4 clc   :   0 
 clh   :   0 cli   :   0 cln   :   0 clr   :   8 cls   :   0 clt   :   0 
-clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 cpi   :   8 
-cpse  :   0 dec   :  10 des   :   0 eor   :   0 fmul  :   0 fmuls :   0 
+clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 cpi   :  12 
+cpse  :   0 dec   :  11 des   :   0 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   7 ld    :   1 
-ldd   :   0 ldi   :  33 lds   :  19 lpm   :   2 lsl   :   1 lsr   :   1 
-mov   :   3 movw  :   0 mul   :   1 muls  :   0 mulsu :   0 neg   :   0 
+ldd   :   0 ldi   :  42 lds   :  19 lpm   :   2 lsl   :   1 lsr   :   1 
+mov   :  11 movw  :   0 mul   :   1 muls  :   0 mulsu :   0 neg   :   0 
 nop   :   3 or    :   0 ori   :   0 out   :   0 pop   :  22 push  :  22 
-rcall :  17 ret   :  20 reti  :   0 rjmp  :  13 rol   :   0 ror   :   0 
+rcall :  25 ret   :  26 reti  :   0 rjmp  :  13 rol   :   0 ror   :   0 
 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 sbiw  :   0 
 sbr   :   6 sbrc  :   0 sbrs  :   4 sec   :   0 seh   :   0 sei   :   0 
 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 sez   :   0 
-sleep :   0 spm   :   0 st    :   2 std   :   0 sts   :  21 sub   :   0 
+sleep :   0 spm   :   0 st    :   4 std   :   0 sts   :  21 sub   :   0 
 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
 Instructions used: 29 out of 112 (25.9%)
 
 "ATtiny416" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000c62    584   2076   2660    4096  64.9%
+[.cseg] 0x000000 0x000cb6    668   2076   2744    4096  67.0%
 [.dseg] 0x003f00 0x003f80      0    128    128     256  50.0%
 [.eseg] 0x000000 0x000000      0      0      0     128   0.0%
 
