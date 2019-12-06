@@ -33,7 +33,7 @@ setup:
 	ldi r24, 10 //car4
 	ldi r25, 1 //car5
 	ldi workhorse, 13 
-	mov r15, workhorse
+	mov r15, workhorse //car 6
 	
 loop:
 	rcall GFX_clear_array
@@ -47,22 +47,9 @@ loop:
 	rcall delay_10ms
 	rcall frog
 	rcall GFX_refresh_screen
-	rcall check_if_hit1
+	cpi r19, 7
+	breq win
 	rjmp loop
-
-check_if_hit1:
-	cpi workhorse, 6
-	breq check_if_hit2
-	ret
-
-check_if_hit2:
-	cp r20, r19
-	breq hit
-	ret
-
-hit:
-	ldi r20, 0
-	ret
 
 car1:
 	mov workhorse, r21
@@ -124,13 +111,6 @@ car6:
 	rcall check_if_hit1
 	ret
 
-increment:
-	cpi r19, 8
-	breq hit
-	inc r19
-	mov r20, r19
-	ret
-
 move_car:
 	cpi workhorse, 0
 	breq exit
@@ -147,6 +127,80 @@ set_car:
 	st X, r17
 	ret
 
+win:
+	rcall GFX_clear_array
+
+	ldi r18, 4 
+	ldi r19, 4
+	rcall GFX_set_array_pos
+	ldi r17, 89
+	st X, r17
+
+	ldi r18, 5 
+	ldi r19, 4
+	rcall GFX_set_array_pos
+	ldi r17, 79
+	st X, r17
+
+	ldi r18, 6 
+	ldi r19, 4
+	rcall GFX_set_array_pos
+	ldi r17, 85
+	st X, r17
+
+	ldi r18, 7 
+	ldi r19, 4
+	rcall GFX_set_array_pos
+	ldi r17, 32
+	st X, r17
+
+	ldi r18, 8
+	ldi r19, 4
+	rcall GFX_set_array_pos
+	ldi r17, 87
+	st X, r17
+
+	ldi r18, 9
+	ldi r19, 4
+	rcall GFX_set_array_pos
+	ldi r17, 73
+	st X, r17
+
+	ldi r18, 10
+	ldi r19, 4
+	rcall GFX_set_array_pos
+	ldi r17, 78
+	st X, r17
+
+	ldi r18, 11
+	ldi r19, 4
+	rcall GFX_set_array_pos
+	ldi r17, 33
+	st X, r17
+
+	rcall GFX_refresh_screen
+	rcall get_button_value
+	breq start_over
+	rjmp win
+
+check_if_hit1:
+	cpi workhorse, 6
+	breq check_if_hit2
+	ret
+
+check_if_hit2:
+	cp r20, r19
+	breq hit
+	ret
+
+hit:
+	ldi r20, 0
+	ret
+
+start_over:
+	ldi r20, 0
+	rjmp loop
+
 frog:
 	ldi r18, 7
 	mov r19, r20
@@ -157,10 +211,17 @@ frog:
 	ret
 
 check_button:
+	rcall get_button_value
+	breq increment
+	ret
+
+increment:
+	inc r19
+	mov r20, r19
+	ret
+
+get_button_value:
 	lds workhorse, PORTB_IN
 	andi workhorse, 0b00010000
 	cpi workhorse, 0b00000000
-	breq increment
-	ldi workhorse, 0b00010000
-	sts PORTB_IN, workhorse
 	ret

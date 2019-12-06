@@ -328,20 +328,23 @@
   <_GFX_draw_shape_loop><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\lib_GFX.asm</FILE><LINE>143</LINE></_GFX_draw_shape_loop>
   <_GFX_draw_shape_end><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\lib_GFX.asm</FILE><LINE>150</LINE></_GFX_draw_shape_end>
   <loop><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>38</LINE></loop>
-  <car1><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>67</LINE></car1>
-  <car2><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>77</LINE></car2>
-  <car3><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>87</LINE></car3>
-  <car4><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>97</LINE></car4>
-  <car5><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>107</LINE></car5>
-  <car6><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>117</LINE></car6>
-  <frog><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>150</LINE></frog>
-  <check_if_hit1><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>53</LINE></check_if_hit1>
-  <check_if_hit2><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>58</LINE></check_if_hit2>
-  <hit><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>63</LINE></hit>
-  <move_car><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>134</LINE></move_car>
-  <set_car><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>144</LINE></set_car>
-  <increment><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>127</LINE></increment>
-  <exit><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>140</LINE></exit>
-  <check_button><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>159</LINE></check_button>
+  <car1><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>54</LINE></car1>
+  <car2><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>64</LINE></car2>
+  <car3><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>74</LINE></car3>
+  <car4><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>84</LINE></car4>
+  <car5><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>94</LINE></car5>
+  <car6><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>104</LINE></car6>
+  <frog><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>204</LINE></frog>
+  <win><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>130</LINE></win>
+  <move_car><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>114</LINE></move_car>
+  <set_car><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>124</LINE></set_car>
+  <check_if_hit1><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>186</LINE></check_if_hit1>
+  <exit><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>120</LINE></exit>
+  <get_button_value><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>223</LINE></get_button_value>
+  <start_over><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>200</LINE></start_over>
+  <check_if_hit2><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>191</LINE></check_if_hit2>
+  <hit><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>196</LINE></hit>
+  <check_button><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>213</LINE></check_button>
+  <increment><FILE>C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm</FILE><LINE>218</LINE></increment>
  </LABELS>
 </ASSEMBLER_INFO>

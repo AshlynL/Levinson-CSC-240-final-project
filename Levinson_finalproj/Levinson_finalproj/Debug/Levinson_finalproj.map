@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.6  C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm Fri Dec 06 09:54:55 2019
+AVRASM ver. 2.2.6  C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm Fri Dec 06 10:57:46 2019
 
 
 EQU  SIGNATURE_000 0000001e
@@ -3465,18 +3465,21 @@ CSEG _GFX_draw_shape_loop 0000060c
 CSEG _GFX_draw_shape_end 00000612
 DEF  workhorse    r16
 CSEG loop         00000628
-CSEG car1         0000063d
-CSEG car2         00000645
-CSEG car3         0000064d
-CSEG car4         00000655
-CSEG car5         0000065d
-CSEG car6         00000665
-CSEG frog         0000067c
-CSEG check_if_hit1 00000635
-CSEG check_if_hit2 00000638
-CSEG hit          0000063b
-CSEG move_car     00000672
-CSEG set_car      00000678
-CSEG increment    0000066d
-CSEG exit         00000676
-CSEG check_button 00000683
+CSEG car1         00000636
+CSEG car2         0000063e
+CSEG car3         00000646
+CSEG car4         0000064e
+CSEG car5         00000656
+CSEG car6         0000065e
+CSEG frog         000006a7
+CSEG win          00000670
+CSEG move_car     00000666
+CSEG set_car      0000066c
+CSEG check_if_hit1 0000069d
+CSEG exit         0000066a
+CSEG get_button_value 000006b4
+CSEG start_over   000006a5
+CSEG check_if_hit2 000006a0
+CSEG hit          000006a3
+CSEG check_button 000006ae
+CSEG increment    000006b1

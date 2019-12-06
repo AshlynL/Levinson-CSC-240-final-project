@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.6  C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm Fri Dec 06 09:54:55 2019
+AVRASM ver. 2.2.6  C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm Fri Dec 06 10:57:46 2019
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATtiny_DFP\1.2.118\avrasm\inc\tn416def.inc'
 C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\main.asm(17): Including file 'C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\Levinson_finalproj\lib_delay.asm'
@@ -6114,138 +6114,198 @@ C:\Users\Physics Lab\Desktop\Levinson-CSC-240-final-project\Levinson_finalproj\L
 000623 e073                      	ldi r23, 3 //car3
 000624 e08a                      	ldi r24, 10 //car4
 000625 e091                      	ldi r25, 1 //car5
-000626 e00d                      	ldi workhorse, 13
-000627 2ef0                      	mov r15, workhorse
+000626 e00d                      	ldi workhorse, 13 
+000627 2ef0                      	mov r15, workhorse //car 6
                                  	
                                  loop:
 000628 dfad                      	rcall GFX_clear_array
-000629 d013                      	rcall car1
-00062a d01a                      	rcall car2
-00062b d021                      	rcall car3
-00062c d028                      	rcall car4
-00062d d02f                      	rcall car5
-00062e d036                      	rcall car6
+000629 d00c                      	rcall car1
+00062a d013                      	rcall car2
+00062b d01a                      	rcall car3
+00062c d021                      	rcall car4
+00062d d028                      	rcall car5
+00062e d02f                      	rcall car6
 00062f daf2                      	rcall delay_10ms
 000630 daf1                      	rcall delay_10ms
-000631 d04a                      	rcall frog
+000631 d075                      	rcall frog
 000632 dfb9                      	rcall GFX_refresh_screen
-000633 d001                      	rcall check_if_hit1
-000634 cff3                      	rjmp loop
-                                 
-                                 check_if_hit1:
-000635 3006                      	cpi workhorse, 6
-000636 f009                      	breq check_if_hit2
-000637 9508                      	ret
-                                 
-                                 check_if_hit2:
-000638 1743                      	cp r20, r19
-000639 f009                      	breq hit
-00063a 9508                      	ret
-                                 
-                                 hit:
-00063b e040                      	ldi r20, 0
-00063c 9508                      	ret
+000633 3037                      	cpi r19, 7
+000634 f1d9                      	breq win
+000635 cff2                      	rjmp loop
                                  
                                  car1:
-00063d 2f05                      	mov workhorse, r21
-00063e 2f20                      	mov r18, workhorse
-00063f d032                      	rcall move_car
-000640 2f50                      	mov r21, workhorse
-000641 e031                      	ldi r19, 1
-000642 d035                      	rcall set_car
-000643 dff1                      	rcall check_if_hit1
-000644 9508                      	ret
+000636 2f05                      	mov workhorse, r21
+000637 2f20                      	mov r18, workhorse
+000638 d02d                      	rcall move_car
+000639 2f50                      	mov r21, workhorse
+00063a e031                      	ldi r19, 1
+00063b d030                      	rcall set_car
+00063c d060                      	rcall check_if_hit1
+00063d 9508                      	ret
                                  
                                  car2:
-000645 2f06                      	mov workhorse, r22
-000646 2f20                      	mov r18, workhorse
-000647 d02a                      	rcall move_car
-000648 2f60                      	mov r22, workhorse
-000649 e032                      	ldi r19, 2
-00064a d02d                      	rcall set_car
-00064b dfe9                      	rcall check_if_hit1
-00064c 9508                      	ret
+00063e 2f06                      	mov workhorse, r22
+00063f 2f20                      	mov r18, workhorse
+000640 d025                      	rcall move_car
+000641 2f60                      	mov r22, workhorse
+000642 e032                      	ldi r19, 2
+000643 d028                      	rcall set_car
+000644 d058                      	rcall check_if_hit1
+000645 9508                      	ret
                                  
                                  car3:
-00064d 2f07                      	mov workhorse, r23
-00064e 2f20                      	mov r18, workhorse
-00064f d022                      	rcall move_car
-000650 2f70                      	mov r23, workhorse
-000651 e033                      	ldi r19, 3
-000652 d025                      	rcall set_car
-000653 dfe1                      	rcall check_if_hit1
-000654 9508                      	ret
+000646 2f07                      	mov workhorse, r23
+000647 2f20                      	mov r18, workhorse
+000648 d01d                      	rcall move_car
+000649 2f70                      	mov r23, workhorse
+00064a e033                      	ldi r19, 3
+00064b d020                      	rcall set_car
+00064c d050                      	rcall check_if_hit1
+00064d 9508                      	ret
                                  
                                  car4:
-000655 2f08                      	mov workhorse, r24
-000656 2f20                      	mov r18, workhorse
-000657 d01a                      	rcall move_car
-000658 2f80                      	mov r24, workhorse
-000659 e034                      	ldi r19, 4
-00065a d01d                      	rcall set_car
-00065b dfd9                      	rcall check_if_hit1
-00065c 9508                      	ret
+00064e 2f08                      	mov workhorse, r24
+00064f 2f20                      	mov r18, workhorse
+000650 d015                      	rcall move_car
+000651 2f80                      	mov r24, workhorse
+000652 e034                      	ldi r19, 4
+000653 d018                      	rcall set_car
+000654 d048                      	rcall check_if_hit1
+000655 9508                      	ret
                                  	
                                  car5:
-00065d 2f09                      	mov workhorse, r25
-00065e 2f20                      	mov r18, workhorse
-00065f d012                      	rcall move_car
-000660 2f90                      	mov r25, workhorse
-000661 e035                      	ldi r19, 5
-000662 d015                      	rcall set_car
-000663 dfd1                      	rcall check_if_hit1
-000664 9508                      	ret
+000656 2f09                      	mov workhorse, r25
+000657 2f20                      	mov r18, workhorse
+000658 d00d                      	rcall move_car
+000659 2f90                      	mov r25, workhorse
+00065a e035                      	ldi r19, 5
+00065b d010                      	rcall set_car
+00065c d040                      	rcall check_if_hit1
+00065d 9508                      	ret
                                  
                                  car6:
-000665 2d0f                      	mov workhorse, r15
-000666 2f20                      	mov r18, workhorse
-000667 d00a                      	rcall move_car
-000668 2ef0                      	mov r15, workhorse
-000669 e036                      	ldi r19, 6
-00066a d00d                      	rcall set_car
-00066b dfc9                      	rcall check_if_hit1
-00066c 9508                      	ret
-                                 
-                                 increment:
-00066d 3038                      	cpi r19, 8
-00066e f261                      	breq hit
-00066f 9533                      	inc r19
-000670 2f43                      	mov r20, r19
-000671 9508                      	ret
+00065e 2d0f                      	mov workhorse, r15
+00065f 2f20                      	mov r18, workhorse
+000660 d005                      	rcall move_car
+000661 2ef0                      	mov r15, workhorse
+000662 e036                      	ldi r19, 6
+000663 d008                      	rcall set_car
+000664 d038                      	rcall check_if_hit1
+000665 9508                      	ret
                                  
                                  move_car:
-000672 3000                      	cpi workhorse, 0
-000673 f011                      	breq exit
-000674 950a                      	dec workhorse
-000675 9508                      	ret
+000666 3000                      	cpi workhorse, 0
+000667 f011                      	breq exit
+000668 950a                      	dec workhorse
+000669 9508                      	ret
                                  
                                  exit:
-000676 e00f                      	ldi workhorse, 15
-000677 9508                      	ret
+00066a e00f                      	ldi workhorse, 15
+00066b 9508                      	ret
                                  
                                  set_car:
+00066c df54                      	rcall GFX_set_array_pos
+00066d ed1b                      	ldi r17, 219
+00066e 931c                      	st X, r17
+00066f 9508                      	ret
+                                 
+                                 win:
+000670 df65                      	rcall GFX_clear_array
+                                 
+000671 e024                      	ldi r18, 4 
+000672 e034                      	ldi r19, 4
+000673 df4d                      	rcall GFX_set_array_pos
+000674 e519                      	ldi r17, 89
+000675 931c                      	st X, r17
+                                 
+000676 e025                      	ldi r18, 5 
+000677 e034                      	ldi r19, 4
 000678 df48                      	rcall GFX_set_array_pos
-000679 ed1b                      	ldi r17, 219
+000679 e41f                      	ldi r17, 79
 00067a 931c                      	st X, r17
-00067b 9508                      	ret
+                                 
+00067b e026                      	ldi r18, 6 
+00067c e034                      	ldi r19, 4
+00067d df43                      	rcall GFX_set_array_pos
+00067e e515                      	ldi r17, 85
+00067f 931c                      	st X, r17
+                                 
+000680 e027                      	ldi r18, 7 
+000681 e034                      	ldi r19, 4
+000682 df3e                      	rcall GFX_set_array_pos
+000683 e210                      	ldi r17, 32
+000684 931c                      	st X, r17
+                                 
+000685 e028                      	ldi r18, 8
+000686 e034                      	ldi r19, 4
+000687 df39                      	rcall GFX_set_array_pos
+000688 e517                      	ldi r17, 87
+000689 931c                      	st X, r17
+                                 
+00068a e029                      	ldi r18, 9
+00068b e034                      	ldi r19, 4
+00068c df34                      	rcall GFX_set_array_pos
+00068d e419                      	ldi r17, 73
+00068e 931c                      	st X, r17
+                                 
+00068f e02a                      	ldi r18, 10
+000690 e034                      	ldi r19, 4
+000691 df2f                      	rcall GFX_set_array_pos
+000692 e41e                      	ldi r17, 78
+000693 931c                      	st X, r17
+                                 
+000694 e02b                      	ldi r18, 11
+000695 e034                      	ldi r19, 4
+000696 df2a                      	rcall GFX_set_array_pos
+000697 e211                      	ldi r17, 33
+000698 931c                      	st X, r17
+                                 
+000699 df52                      	rcall GFX_refresh_screen
+00069a d019                      	rcall get_button_value
+00069b f049                      	breq start_over
+00069c cfd3                      	rjmp win
+                                 
+                                 check_if_hit1:
+00069d 3006                      	cpi workhorse, 6
+00069e f009                      	breq check_if_hit2
+00069f 9508                      	ret
+                                 
+                                 check_if_hit2:
+0006a0 1743                      	cp r20, r19
+0006a1 f009                      	breq hit
+0006a2 9508                      	ret
+                                 
+                                 hit:
+0006a3 e040                      	ldi r20, 0
+0006a4 9508                      	ret
+                                 
+                                 start_over:
+0006a5 e040                      	ldi r20, 0
+0006a6 cf81                      	rjmp loop
                                  
                                  frog:
-00067c e027                      	ldi r18, 7
-00067d 2f34                      	mov r19, r20
-00067e d004                      	rcall check_button
-00067f df41                      	rcall GFX_set_array_pos
-000680 e21a                      	ldi r17, 42
-000681 931c                      	st X, r17
-000682 9508                      	ret
+0006a7 e027                      	ldi r18, 7
+0006a8 2f34                      	mov r19, r20
+0006a9 d004                      	rcall check_button
+0006aa df16                      	rcall GFX_set_array_pos
+0006ab e21a                      	ldi r17, 42
+0006ac 931c                      	st X, r17
+0006ad 9508                      	ret
                                  
                                  check_button:
-000683 9100 0428                 	lds workhorse, PORTB_IN
-000685 7100                      	andi workhorse, 0b00010000
-000686 3000                      	cpi workhorse, 0b00000000
-000687 f329                      	breq increment
-000688 e100                      	ldi workhorse, 0b00010000
-000689 9300 0428                 	sts PORTB_IN, workhorse
-00068b 9508                      	ret
+0006ae d005                      	rcall get_button_value
+0006af f009                      	breq increment
+0006b0 9508                      	ret
+                                 
+                                 increment:
+0006b1 9533                      	inc r19
+0006b2 2f43                      	mov r20, r19
+0006b3 9508                      	ret
+                                 
+                                 get_button_value:
+0006b4 9100 0428                 	lds workhorse, PORTB_IN
+0006b6 7100                      	andi workhorse, 0b00010000
+0006b7 3000                      	cpi workhorse, 0b00000000
 
 
 RESOURCE USE INFORMATION
@@ -6263,9 +6323,9 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 "ATtiny416" register use summary:
-x  :   4 y  :   0 z  :   2 r0 :   3 r1 :   3 r2 :   0 r3 :   0 r4 :   0 
+x  :  12 y  :   0 z  :   2 r0 :   3 r1 :   3 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   3 r16:  90 r17:  23 r18:  20 r19:  22 r20:  10 
+r13:   0 r14:   0 r15:   3 r16:  88 r17:  39 r18:  28 r19:  30 r20:  11 
 r21:  10 r22:   7 r23:  19 r24:  19 r25:  11 r26:   4 r27:   4 r28:   0 
 r29:   0 r30:   3 r31:   3 
 Registers used: 19 out of 35 (54.3%)
@@ -6273,7 +6333,7 @@ Registers used: 19 out of 35 (54.3%)
 "ATtiny416" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   1 add   :   3 adiw  :   0 and   :   0 
 andi  :   1 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   5 brcs  :   0 break :   0 breq  :   8 brge  :   0 brhc  :   0 
+brcc  :   5 brcs  :   0 break :   0 breq  :   9 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
 brne  :  10 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 cbi   :   0 cbr   :   4 clc   :   0 
@@ -6281,21 +6341,21 @@ clh   :   0 cli   :   0 cln   :   0 clr   :   8 cls   :   0 clt   :   0
 clv   :   0 clz   :   0 com   :   0 cp    :   1 cpc   :   0 cpi   :  11 
 cpse  :   0 dec   :  11 des   :   0 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   7 ld    :   1 
-ldd   :   0 ldi   :  49 lds   :  19 lpm   :   2 lsl   :   1 lsr   :   1 
+ldd   :   0 ldi   :  73 lds   :  19 lpm   :   2 lsl   :   1 lsr   :   1 
 mov   :  24 movw  :   0 mul   :   1 muls  :   0 mulsu :   0 neg   :   0 
 nop   :   3 or    :   0 ori   :   0 out   :   0 pop   :  22 push  :  22 
-rcall :  46 ret   :  33 reti  :   0 rjmp  :  13 rol   :   0 ror   :   0 
+rcall :  57 ret   :  34 reti  :   0 rjmp  :  15 rol   :   0 ror   :   0 
 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 sbiw  :   0 
 sbr   :   6 sbrc  :   0 sbrs  :   4 sec   :   0 seh   :   0 sei   :   0 
 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 sez   :   0 
-sleep :   0 spm   :   0 st    :   3 std   :   0 sts   :  22 sub   :   0 
+sleep :   0 spm   :   0 st    :  11 std   :   0 sts   :  21 sub   :   0 
 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
 Instructions used: 30 out of 112 (26.8%)
 
 "ATtiny416" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000d18    766   2076   2842    4096  69.4%
+[.cseg] 0x000000 0x000d72    856   2076   2932    4096  71.6%
 [.dseg] 0x003f00 0x003f80      0    128    128     256  50.0%
 [.eseg] 0x000000 0x000000      0      0      0     128   0.0%
 
